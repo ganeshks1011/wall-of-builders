@@ -1,6 +1,6 @@
 # Million Pixels
 
-A Million Dollar Homepage-inspired wall: 1,000,000 pixels, where every block is a real side project.
+A Million Dollar Homepage-inspired wall: 1,000,000 pixels, where every block is a real side project. Each block is 16x16 pixels, so the wall fits 3,906 projects.
 
 ## How it works
 
