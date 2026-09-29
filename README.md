@@ -1,4 +1,4 @@
-# Million Links
+# Million Pixels
 
 A Million Dollar Homepage-inspired wall: 1,000,000 pixels, where every block is a real side project.
 
@@ -10,7 +10,7 @@ No money changes hands. To claim a pixel block on the wall, link back to us:
 2. Fork this repo and add your project to `data/projects.json`.
 3. Open a pull request.
 4. An automated check fetches your page and verifies the backlink. If it finds a plain, crawlable link, your PR passes.
-5. Once merged, your pixel goes live on the wall at `codevu.com/million-links`, linking back to your project.
+5. Once merged, your pixel goes live on the wall at `codevu.com/million-pixels`, linking back to your project.
 
 Keep the backlink live. We re-check weekly, and pixels whose backlinks disappear get delisted.
 
