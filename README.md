@@ -1,6 +1,6 @@
 # Wall of Builders
 
-A Million Dollar Homepage-inspired wall where every block is a real side project built by someone. The canvas is 1024x1024 pixels (a touch over a million); each block is 16x16, so the wall holds 4,096 projects in a tidy 64x64 grid.
+A Million Dollar Homepage-inspired wall where every block is a real side project built by someone. The canvas is 1024x1024 pixels (a touch over a million); each block is 16x16, so the wall holds 4,096 blocks in a tidy 64x64 grid. The center 2x2 is reserved for codevu.com itself; the remaining 4,092 blocks are claimable.
 
 ## How it works
 
