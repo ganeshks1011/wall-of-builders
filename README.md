@@ -22,15 +22,17 @@ Add one object to the array in `data/projects.json`:
 {
   "name": "My Side Project",
   "url": "https://myproject.com",
-  "backlinkUrl": "https://myproject.com/about"
+  "backlinkUrl": "https://myproject.com/about",
+  "icon": "https://myproject.com/icon.png"
 }
 ```
 
 - `name`: your project's name, max 60 characters.
-- `url`: your project's homepage.
+- `url`: your project's homepage. Your pixel block on the wall links here.
 - `backlinkUrl`: the page on your site where the link to `codevu.com` lives.
+- `icon` (optional): direct URL to the image shown on your pixel block. Leave it out and we auto-pull the largest favicon from your site.
 
-Wall position is assigned automatically in merge order. Each block shows the project's favicon, pulled automatically when the wall renders (we grab the largest available icon, typically the 180x180 apple-touch-icon, and scale it down to block size).
+Wall position is assigned automatically in merge order. Each block links to the project's `url` and shows its icon: your supplied `icon` when given, otherwise the largest available favicon pulled automatically when the wall renders (typically the 180x180 apple-touch-icon, scaled down to block size).
 
 ## Rules
 

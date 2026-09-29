@@ -56,6 +56,10 @@ function validateEntry(entry, index) {
     fail(`${label}: "backlinkUrl" must be a valid http(s) URL`);
     ok = false;
   }
+  if (entry.icon !== undefined && !isValidUrl(entry.icon)) {
+    fail(`${label}: "icon" must be a valid http(s) URL`);
+    ok = false;
+  }
   return ok;
 }
 
@@ -65,7 +69,7 @@ async function fetchHtml(url) {
   try {
     const response = await fetch(url, {
       signal: controller.signal,
-      headers: { 'User-Agent': 'million-links-backlink-check/1.0' },
+      headers: { 'User-Agent': 'million-pixels-backlink-check/1.0' },
       redirect: 'follow',
     });
     if (!response.ok) {
