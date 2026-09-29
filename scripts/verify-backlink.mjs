@@ -4,10 +4,9 @@
 
 import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
+import { fetchHtml, findBacklink, isHiddenOrNofollow, isValidUrl } from './backlink-check.mjs';
 
 const DATA_PATH = 'data/projects.json';
-const REQUIRED_HOST = 'codevu.com';
-const FETCH_TIMEOUT_MS = 15000;
 const MAX_NAME_LENGTH = 60;
 const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_TAGS = 5;
@@ -25,15 +24,6 @@ function readProjectsAtRef(ref) {
     return JSON.parse(raw);
   } catch {
     return [];
-  }
-}
-
-function isValidUrl(value) {
-  try {
-    const parsed = new URL(value);
-    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
-  } catch {
-    return false;
   }
 }
 
@@ -88,47 +78,6 @@ function validateEntry(entry, index) {
   return ok;
 }
 
-async function fetchHtml(url) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'User-Agent': 'wall-of-builders-backlink-check/1.0' },
-      redirect: 'follow',
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    return await response.text();
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-function findBacklink(html) {
-  const anchorPattern = /<a\b[^>]*href\s*=\s*["']([^"']*)["'][^>]*>/gi;
-  let match;
-  while ((match = anchorPattern.exec(html)) !== null) {
-    const tag = match[0];
-    let href;
-    try {
-      href = new URL(match[1], 'https://placeholder.invalid');
-    } catch {
-      continue;
-    }
-    const host = href.hostname.replace(/^www\./, '');
-    if (host === REQUIRED_HOST || host.endsWith(`.${REQUIRED_HOST}`)) {
-      return { tag };
-    }
-  }
-  return null;
-}
-
-function isHiddenOrNofollow(tag) {
-  return /rel\s*=\s*["'][^"']*nofollow/i.test(tag) || /style\s*=\s*["'][^"']*display\s*:\s*none/i.test(tag);
-}
-
 async function verifyBacklink(entry) {
   let html;
   try {
@@ -139,11 +88,11 @@ async function verifyBacklink(entry) {
   }
   const backlink = findBacklink(html);
   if (!backlink) {
-    fail(`"${entry.name}": no link to ${REQUIRED_HOST} found in the HTML of ${entry.backlinkUrl}`);
+    fail(`"${entry.name}": no link to codevu.com found in the HTML of ${entry.backlinkUrl}`);
     return;
   }
   if (isHiddenOrNofollow(backlink.tag)) {
-    fail(`"${entry.name}": the link to ${REQUIRED_HOST} must be a plain crawlable link (not hidden or nofollow)`);
+    fail(`"${entry.name}": the link to codevu.com must be a plain crawlable link (not hidden or nofollow)`);
   }
 }
 
