@@ -69,7 +69,7 @@ async function fetchHtml(url) {
   try {
     const response = await fetch(url, {
       signal: controller.signal,
-      headers: { 'User-Agent': 'million-pixels-backlink-check/1.0' },
+      headers: { 'User-Agent': 'wall-of-builders-backlink-check/1.0' },
       redirect: 'follow',
     });
     if (!response.ok) {
