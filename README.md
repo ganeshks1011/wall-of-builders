@@ -1,6 +1,6 @@
 # Wall of Builders
 
-A Million Dollar Homepage-inspired wall where every block is a real side project built by someone. The canvas is 1024x1024 pixels (a touch over a million); each block is 16x16, so the wall holds 4,096 tiles in a tidy 64x64 grid.
+A Million Dollar Homepage-inspired wall where every block is a real startup or side project built by someone. Claim a tile to promote your project. The canvas is 1024x1024 pixels (a touch over a million); each block is 16x16, so the wall holds 4,096 tiles in a tidy 64x64 grid.
 
 ## How it works
 
@@ -23,7 +23,9 @@ Add one object to the array in `data/projects.json`:
   "name": "My Side Project",
   "url": "https://myproject.com",
   "backlinkUrl": "https://myproject.com/about",
-  "icon": "https://myproject.com/icon.png"
+  "icon": "https://myproject.com/icon.png",
+  "description": "Turns your bookmarks into a weekly newsletter",
+  "tags": ["productivity", "newsletter"]
 }
 ```
 
@@ -31,6 +33,8 @@ Add one object to the array in `data/projects.json`:
 - `url`: your project's homepage. Your pixel block on the wall links here.
 - `backlinkUrl`: the page on your site where the link to `codevu.com` lives.
 - `icon` (optional): direct URL to the image shown on your pixel block. Leave it out and we auto-pull the largest favicon from your site.
+- `description` (optional): one line on what your project does, max 140 characters. Shown in the wall's browse view.
+- `tags` (optional): up to 5 short tags, e.g. `["ai", "devtools"]`. Used for search and filtering.
 
 Wall position is assigned automatically in merge order. Each block links to the project's `url` and shows its icon: your supplied `icon` when given, otherwise the largest available favicon pulled automatically when the wall renders (typically the 180x180 apple-touch-icon, scaled down to block size).
 

@@ -9,6 +9,9 @@ const DATA_PATH = 'data/projects.json';
 const REQUIRED_HOST = 'codevu.com';
 const FETCH_TIMEOUT_MS = 15000;
 const MAX_NAME_LENGTH = 60;
+const MAX_DESCRIPTION_LENGTH = 140;
+const MAX_TAGS = 5;
+const MAX_TAG_LENGTH = 30;
 
 const failures = [];
 
@@ -59,6 +62,28 @@ function validateEntry(entry, index) {
   if (entry.icon !== undefined && !isValidUrl(entry.icon)) {
     fail(`${label}: "icon" must be a valid http(s) URL`);
     ok = false;
+  }
+  if (entry.description !== undefined) {
+    if (typeof entry.description !== 'string' || entry.description.trim() === '') {
+      fail(`${label}: "description" must be a non-empty string`);
+      ok = false;
+    } else if (entry.description.length > MAX_DESCRIPTION_LENGTH) {
+      fail(`${label}: "description" must be ${MAX_DESCRIPTION_LENGTH} characters or fewer`);
+      ok = false;
+    }
+  }
+  if (entry.tags !== undefined) {
+    const tags = entry.tags;
+    if (!Array.isArray(tags) || tags.some((tag) => typeof tag !== 'string' || tag.trim() === '')) {
+      fail(`${label}: "tags" must be an array of non-empty strings`);
+      ok = false;
+    } else if (tags.length > MAX_TAGS) {
+      fail(`${label}: "tags" must have at most ${MAX_TAGS} entries`);
+      ok = false;
+    } else if (tags.some((tag) => tag.length > MAX_TAG_LENGTH)) {
+      fail(`${label}: each tag must be ${MAX_TAG_LENGTH} characters or fewer`);
+      ok = false;
+    }
   }
   return ok;
 }
