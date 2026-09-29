@@ -1,6 +1,6 @@
 # Wall of Builders
 
-A Million Dollar Homepage-inspired wall: 1,000,000 pixels, where every block is a real side project built by someone. Each block is 16x16 pixels, so the wall fits 3,906 projects.
+A Million Dollar Homepage-inspired wall where every block is a real side project built by someone. The canvas is 1024x1024 pixels (a touch over a million); each block is 16x16, so the wall holds 4,096 projects in a tidy 64x64 grid.
 
 ## How it works
 
