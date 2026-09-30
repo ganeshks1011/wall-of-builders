@@ -45,7 +45,7 @@ function validateEntry(entry, index) {
     fail(`${label}: "url" must be a valid http(s) URL`);
     ok = false;
   }
-  if (!isValidUrl(entry.backlinkUrl)) {
+  if (entry.backlinkUrl !== undefined && !isValidUrl(entry.backlinkUrl)) {
     fail(`${label}: "backlinkUrl" must be a valid http(s) URL`);
     ok = false;
   }
@@ -118,6 +118,21 @@ async function main() {
   const baseUrls = new Set(baseProjects.map((p) => p && p.url));
   const newEntries = headProjects.filter((p) => p && !baseUrls.has(p.url));
 
+  // Locked tiles (live backlink) cannot be removed or re-claimed by someone
+  // else's pull request. The `locked` flag itself is managed by the weekly
+  // re-verification job, never by hand.
+  const headByUrl = new Map(headProjects.filter((p) => p && p.url).map((p) => [p.url, p]));
+  for (const base of baseProjects) {
+    if (!base || !base.url) continue;
+    const head = headByUrl.get(base.url);
+    if (base.locked === true && !head) {
+      fail(`"${base.name}": this tile is locked by a verified backlink and cannot be removed by this pull request`);
+    }
+    if (head && base.locked !== head.locked) {
+      fail(`"${base.name}": "locked" is set automatically by the weekly backlink check — don't change it by hand`);
+    }
+  }
+
   const seen = new Set(baseUrls);
   headProjects.forEach((entry, index) => {
     if (entry && seen.has(entry.url) && baseUrls.has(entry.url) === false) {
@@ -128,8 +143,17 @@ async function main() {
   });
 
   for (const entry of newEntries) {
-    if (entry && isValidUrl(entry.backlinkUrl)) {
-      await verifyBacklink(entry);
+    if (!entry) continue;
+    if (entry.locked !== undefined) {
+      fail(`"${entry.name}": "locked" is set automatically by the weekly backlink check — remove it from your entry`);
+      continue;
+    }
+    if (entry.backlinkUrl !== undefined) {
+      if (isValidUrl(entry.backlinkUrl)) {
+        await verifyBacklink(entry);
+      }
+    } else {
+      console.log(`"${entry.name}": no backlinkUrl — tile stays unlocked and can be claimed by someone else until a backlink is added.`);
     }
   }
 

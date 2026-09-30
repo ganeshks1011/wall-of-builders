@@ -4,15 +4,17 @@ A Million Dollar Homepage-inspired wall where every block is a real startup or s
 
 ## How it works
 
-No money changes hands. To claim a pixel block on the wall, link back to us:
+No money changes hands. Claiming is free, and the backlink is optional:
 
-1. Add a link to `https://codevu.com` somewhere public on your project's site (footer, links page, anywhere crawlable).
-2. Fork this repo and add your project to `data/projects.json`.
-3. Open a pull request.
-4. An automated check fetches your page and verifies the backlink. If it finds a plain, crawlable link, your PR passes.
-5. Once merged, your pixel goes live on the wall at `codevu.com/wob`, linking back to your project.
+1. Fork this repo and add your project to `data/projects.json`.
+2. Open a pull request. An automated check validates your entry.
+3. Once merged, your pixel goes live on the wall at `codevu.com/wob`, linking back to your project.
 
-Keep the backlink live. We re-check weekly, and pixels whose backlinks disappear get delisted.
+### Lock your tile with a backlink
+
+Add a plain, crawlable link to `https://codevu.com` somewhere public on your project's site (footer, links page, anywhere crawlable) and list that page as `backlinkUrl` in your entry. We verify it automatically when you open the PR, and re-check weekly.
+
+A tile with a live backlink is **locked**: it cannot be claimed by anyone else. Without a backlink your tile stays live, but it is unlocked, which means someone else could claim it out from under you. If your backlink ever goes dead, your tile simply unlocks. It is never delisted for that.
 
 ## Entry format
 
@@ -31,7 +33,8 @@ Add one object to the array in `data/projects.json`:
 
 - `name`: your project's name, max 60 characters.
 - `url`: your project's homepage. Your pixel block on the wall links here.
-- `backlinkUrl`: the page on your site where the link to `codevu.com` lives.
+- `backlinkUrl` (optional): the page on your site where the link to `codevu.com` lives. Provide it to lock your tile; leave it out and your tile stays unlocked.
+- `locked`: set automatically by our weekly backlink check. `true` means your backlink is live and your tile is locked. Don't set it by hand; pull requests that fake or flip it are rejected.
 - `icon` (optional): direct URL to the image shown on your pixel block. Leave it out and we auto-pull the largest favicon from your site.
 - `description` (optional): one line on what your project does, max 140 characters. Shown in the wall's browse view.
 - `tags` (optional): up to 5 short tags, e.g. `["ai", "devtools"]`. Used for search and filtering.
@@ -42,13 +45,14 @@ Wall position is assigned automatically in merge order. Each block links to the 
 
 - One block per project.
 - Your site must be a real side project. No spam, parked domains, or anything illegal.
-- The backlink must be a plain `<a href="https://codevu.com">` in the page's HTML. JavaScript-rendered, hidden, or `nofollow` links don't count.
+- The backlink, when you provide one, must be a plain `<a href="https://codevu.com">` in the page's HTML. JavaScript-rendered, hidden, or `nofollow` links don't count.
+- A locked tile (live backlink) cannot be removed or re-claimed by anyone else's pull request.
 
 ## Roadmap
 
 - [ ] Wall page renderer on codevu.com reading this repo's data
 - [x] Block visuals: favicon auto-pull
-- [ ] Weekly backlink re-verification with auto-delist
+- [x] Weekly backlink re-verification (locks tiles with live backlinks; never delists)
 - [ ] Decide the canonical backlink target (`codevu.com` vs the wall page URL)
 
 ## License
