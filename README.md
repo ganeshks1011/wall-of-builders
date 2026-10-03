@@ -39,7 +39,7 @@ Add one object to the array in `data/projects.json`:
 - `description` (optional): one line on what your project does, max 140 characters. Shown in the wall's browse view.
 - `tags` (optional): up to 5 short tags, e.g. `["ai", "devtools"]`. Used for search and filtering.
 
-Wall position is assigned automatically in merge order. Each block links to the project's `url` and shows its icon: your supplied `icon` when given, otherwise the largest available favicon pulled automatically when the wall renders (typically the 180x180 apple-touch-icon, scaled down to block size).
+Wall position is assigned automatically in merge order: tiles fill from the center of the 64x64 field outward along a spiral, and a tile can only be placed next to an already-filled tile, so the wall always grows as one connected blob. Each block links to the project's `url` and shows its icon: your supplied `icon` when given, otherwise the largest available favicon pulled automatically when the wall renders (typically the 180x180 apple-touch-icon, scaled down to block size).
 
 ## Rules
 
