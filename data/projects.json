@@ -28,5 +28,10 @@
     "name": "SEEDS",
     "url": "https://againstallodds.games/",
     "description": "Indie space terraforming game whose in-game computer is a real 64-bit RISC-V VM running Linux."
+  },
+  {
+    "name": "Offrun",
+    "url": "https://offrun.dev/",
+    "description": "Free Mac workspace that runs Claude Code, Codex, AGY, and Grok Build side by side with git worktrees and project memory."
   }
 ]
