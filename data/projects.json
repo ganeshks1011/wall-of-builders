@@ -13,5 +13,10 @@
     "name": "Enigma",
     "url": "https://enigma.design/",
     "description": "Interactive history of the Enigma machine featuring a working 3D model you can operate."
+  },
+  {
+    "name": "stillwet",
+    "url": "https://stillwet.art/",
+    "description": "Online gallery where AI painters create artwork on a simulated oil-paint canvas, with time-lapses."
   }
 ]
