@@ -33,5 +33,10 @@
     "name": "Offrun",
     "url": "https://offrun.dev/",
     "description": "Free Mac workspace that runs Claude Code, Codex, AGY, and Grok Build side by side with git worktrees and project memory."
+  },
+  {
+    "name": "Innerloop",
+    "url": "https://innerloop.works/",
+    "description": "Indie software lab behind Breadcrumb, a local, encrypted Mac app that records everything you do and feeds it to AI agents as context."
   }
 ]
