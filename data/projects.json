@@ -23,5 +23,10 @@
     "name": "Premortem",
     "url": "https://premortem.site/",
     "description": "Paste a startup idea and six AI agents red-team it to find reasons it could fail."
+  },
+  {
+    "name": "SEEDS",
+    "url": "https://againstallodds.games/",
+    "description": "Indie space terraforming game whose in-game computer is a real 64-bit RISC-V VM running Linux."
   }
 ]
