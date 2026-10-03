@@ -38,5 +38,10 @@
     "name": "Innerloop",
     "url": "https://innerloop.works/",
     "description": "Indie software lab behind Breadcrumb, a local, encrypted Mac app that records everything you do and feeds it to AI agents as context."
+  },
+  {
+    "name": "Dental Scope",
+    "url": "https://dental-scope.com/",
+    "description": "Interactive 3D explorer of dental and facial anatomy with hundreds of selectable structures."
   }
 ]
