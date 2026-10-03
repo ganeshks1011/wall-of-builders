@@ -8,5 +8,10 @@
     "name": "BillMender",
     "url": "https://billmender.com/",
     "description": "Free tool that finds errors in your hospital bill by comparing it to actual insurer prices."
+  },
+  {
+    "name": "Enigma",
+    "url": "https://enigma.design/",
+    "description": "Interactive history of the Enigma machine featuring a working 3D model you can operate."
   }
 ]
