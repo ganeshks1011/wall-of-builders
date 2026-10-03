@@ -3,5 +3,10 @@
     "name": "Why Planes Fly",
     "url": "https://whyplanesfly.com/",
     "description": "Interactive essay debunking lift myths with live in-browser wind-tunnel simulations."
+  },
+  {
+    "name": "BillMender",
+    "url": "https://billmender.com/",
+    "description": "Free tool that finds errors in your hospital bill by comparing it to actual insurer prices."
   }
 ]
