@@ -18,5 +18,10 @@
     "name": "stillwet",
     "url": "https://stillwet.art/",
     "description": "Online gallery where AI painters create artwork on a simulated oil-paint canvas, with time-lapses."
+  },
+  {
+    "name": "Premortem",
+    "url": "https://premortem.site/",
+    "description": "Paste a startup idea and six AI agents red-team it to find reasons it could fail."
   }
 ]
